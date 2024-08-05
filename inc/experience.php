@@ -1,19 +1,19 @@
 <?php
 
     //Education Post Custom Columns
-    function desvertcore_experience_columns( $columns ){
+    function mcp_experience_columns( $columns ){
 
-        $columns['title'] = __('Job Title', 'desvertcore');
-        $columns['companyName'] = __('Name of Company', 'desvertcore');
-        $columns['startDate'] = __('Start Date', 'desvertcore');
-        $columns['endDate'] = __('End Date', 'desvertcore');
-        $columns['duretion'] = __('Duration', 'desvertcore');
+        $columns['title'] = __('Job Title', 'managecustompost');
+        $columns['companyName'] = __('Name of Company', 'managecustompost');
+        $columns['startDate'] = __('Start Date', 'managecustompost');
+        $columns['endDate'] = __('End Date', 'managecustompost');
+        $columns['duretion'] = __('Duration', 'managecustompost');
 
         return $columns;
     }
-    add_filter('manage_experience_posts_columns', 'desvertcore_experience_columns');
+    add_filter('manage_experience_posts_columns', 'mcp_experience_columns');
 
-    function desvertcore_experience_column_data($column, $post_id){
+    function mcp_experience_column_data($column, $post_id){
 
         if('companyName' == $column){
 
@@ -56,4 +56,4 @@
         }
 
     }
-    add_action('manage_experience_posts_custom_column', 'desvertcore_experience_column_data', 10, 2);
+    add_action('manage_experience_posts_custom_column', 'mcp_experience_column_data', 10, 2);

@@ -1,18 +1,18 @@
 <?php
 
     //Education Post Custom Columns
-    function desvertcore_education_columns( $columns ){
-        $columns['title'] = __('Name of Degree', 'desvertcore');
-        $columns['instituteName'] = __('Institute Name', 'desvertcore');
-        $columns['startDate'] = __('Start Date', 'desvertcore');
-        $columns['endDate'] = __('End Date', 'desvertcore');
-        $columns['duretion'] = __('Duration', 'desvertcore');
+    function mcp_education_columns( $columns ){
+        $columns['title'] = __('Name of Degree', 'managecustompost');
+        $columns['instituteName'] = __('Institute Name', 'managecustompost');
+        $columns['startDate'] = __('Start Date', 'managecustompost');
+        $columns['endDate'] = __('End Date', 'managecustompost');
+        $columns['duretion'] = __('Duration', 'managecustompost');
 
         return $columns;
     }
-    add_filter('manage_education_posts_columns', 'desvertcore_education_columns');
+    add_filter('manage_education_posts_columns', 'mcp_education_columns');
 
-    function desvertcore_education_column_data($column, $post_id){
+    function mcp_education_column_data($column, $post_id){
 
         if('instituteName' == $column){
             echo get_post_meta($post_id, 'institute_name', true);
@@ -53,4 +53,4 @@
         }
 
     }
-    add_action('manage_education_posts_custom_column', 'desvertcore_education_column_data', 10, 2);
+    add_action('manage_education_posts_custom_column', 'mcp_education_column_data', 10, 2);

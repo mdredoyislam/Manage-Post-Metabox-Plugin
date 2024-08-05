@@ -1,16 +1,16 @@
 <?php
 
     //Education Post Custom Columns
-    function desvertcore_projects_columns( $columns ){
+    function mcp_projects_columns( $columns ){
 
-        $columns['title'] = __('Project Title', 'desvertcore');
-        $columns['projectFeature'] = __('Project Feature', 'desvertcore');
+        $columns['title'] = __('Project Title', 'managecustompost');
+        $columns['projectFeature'] = __('Project Feature', 'managecustompost');
 
         return $columns;
     }
-    add_filter('manage_projects_posts_columns', 'desvertcore_projects_columns');
+    add_filter('manage_projects_posts_columns', 'mcp_projects_columns');
 
-    function desvertcore_projects_column_data($column, $post_id){
+    function mcp_projects_column_data($column, $post_id){
 
         if('projectFeature' == $column){
 
@@ -21,4 +21,4 @@
         }
 
     }
-    add_action('manage_projects_posts_custom_column', 'desvertcore_projects_column_data', 10, 2);
+    add_action('manage_projects_posts_custom_column', 'mcp_projects_column_data', 10, 2);

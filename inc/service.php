@@ -1,25 +1,33 @@
 <?php
 
     //Education Post Custom Columns
-    function desvertcore_service_columns( $columns ){
+    function mcp_service_columns( $columns ){
+        unset($columns['date']);
 
-        $columns['title'] = __('Services Title', 'desvertcore');
-        $columns['servicesIcons'] = __('Services Icons', 'desvertcore');
-        $columns['servicesText'] = __('Services Text', 'desvertcore');
+        $columns['title'] = __('Services Title', 'managecustompost');
+        $columns['servicesIcons'] = __('Services Icons', 'managecustompost');
+        $columns['servicesText'] = __('Services Text', 'managecustompost');
+        $columns['date'] = __('Date', 'managecustompost');
 
         return $columns;
     }
-    add_filter('manage_service_posts_columns', 'desvertcore_service_columns');
+    add_filter('manage_service_posts_columns', 'mcp_service_columns');
 
-    function desvertcore_service_column_data($column, $post_id){
+    function mcp_service_column_data($column, $post_id){
 
         if('servicesIcons' == $column){
+            //echo get_post_meta($post_id, 'select_icon', true);
+            $services_icon = get_field('select_icon');
+            $services_icon_output = <<<EOD
+                <div class='slide'>
+                    <img width="100" src="{$services_icon['url']}" alt="{$services_icon['alt']}">
+                </div>
+            EOD;
+            echo $services_icon_output;
 
-            //echo get_post_meta($post_id, 'name_of_company', true);
-            $thumbnail = get_the_post_thumbnail($post_id, array(200,80), array('class'=>'project-feature'));
-            echo $thumbnail;
-
+        }elseif('servicesText' == $column){
+            echo get_the_content();
         }
 
     }
-    add_action('manage_service_posts_custom_column', 'desvertcore_service_column_data', 10, 2);
+    add_action('manage_service_posts_custom_column', 'mcp_service_column_data', 10, 2);
